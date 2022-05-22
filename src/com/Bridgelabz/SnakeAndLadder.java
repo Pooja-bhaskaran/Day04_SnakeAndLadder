@@ -1,7 +1,5 @@
 package com.Bridgelabz;
 
-import javax.swing.text.html.Option;
-
 import java.util.Random;
 
 import static java.lang.Math.random;
@@ -12,43 +10,34 @@ public class SnakeAndLadder {
     static final int LADDER = 2;
     static final int SNAKE = 3;
 
-    public static int diceRoll() {
-        int diceRoll = (int) (random() * 6) + 1;
-//      System.out.println("DiceRoll Number : " + diceRoll);
-        return diceRoll;
-    }
-
     public static void main(String[] args) {
-        System.out.println("***** Snake and Ladder Game *****");
         int position = 0;
-        diceRoll();
-        option();
-        int option = option();
-        int diceRoll = diceRoll();
-        System.out.println("DiceRoll Number : " + diceRoll);
-        System.out.println("checking the option : " + option);
+        System.out.println("positionCheck: " + position);
+//        Random random = new Random();
+        int diceRoll = (int)(random()*6) + 1;
+        System.out.println("dice: " + diceRoll);
 
-        switch (option) {
-            case NO_PLAY:
-                System.out.println("Player is in Same Position");
-                break;
-            case LADDER:
-                if (diceRoll > 0) {
-                    position = diceRoll + option;
-                    break;
+        int option = (int)(random()*3);
+        System.out.println("optionCheck: " + option);
+
+
+        for (position = 0; position <= 100; position++) {
+
+                if (option == LADDER) {
+                    System.out.println("!! LADDER !! The player will move ahead");
+                    position = position + diceRoll;
+                } else if (option == SNAKE) {
+                    System.out.println("!! SNAKE !! The player position will be reduced");
+                    position = position - diceRoll;
+                } else {
+                    System.out.println("!! NO_PLAY !! The player will remain in the Same Position");
+                    position = position;
                 }
-            case SNAKE:
-                position -= diceRoll;
-                break;
-        }
-        System.out.println("Current Position : " + position);
+                if (position < 0) {
+                    System.out.println("The player should restart from 0th position");
+                    position = 0;
+                }
+                System.out.println("position: " + position);
+            }
     }
-
-    public static int option() {
-        Random random = new Random();
-        int option = random.nextInt(3) + 1;
-//      System.out.println("Checking the option : " + option);
-        return option;
-    }
-
 }
