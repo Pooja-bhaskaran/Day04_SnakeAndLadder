@@ -10,18 +10,19 @@ public class SnakeAndLadder {
     static final int LADDER = 2;
     static final int SNAKE = 3;
 
+    static int diceCount=0;
+
     public static void main(String[] args) {
         int position = 0;
         System.out.println("positionCheck: " + position);
 //        Random random = new Random();
-        int diceRoll = (int) (random() * 6) + 1;
-        System.out.println("dice: " + diceRoll);
 
-        int option = (int) (random() * 3)+1;
-        System.out.println("optionCheck: " + option);
-
-
-        for (position = 0; position <= 100; position++) {
+        while(position < 100) {
+            int diceRoll = (int) (random() * 6) + 1;
+            System.out.println("dice: " + diceRoll);
+            diceCount++;
+            int option = (int) (random() * 3)+1;
+            System.out.println("optionCheck: " + option);
 
             if ((option == LADDER) && (position + diceRoll) <= 100) {
                 System.out.println("!! LADDER !! The player will move ahead");
@@ -31,13 +32,12 @@ public class SnakeAndLadder {
                 position = position - diceRoll;
             } else {
                 System.out.println("!! NO_PLAY !! The player will remain in the Same Position");
-                position = position;
             }
             if (position < 0) {
                 System.out.println("The player should restart from 0th position");
                 position = 0;
             }
-            System.out.println("current position: " + position);
+            System.out.println("current position: " + position + "\n diceCount: " + diceCount);
         }
     }
 }
